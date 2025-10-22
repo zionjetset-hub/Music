@@ -1,0 +1,51 @@
+{
+  "packageName": "com.musicapp",
+  "title": "Music Distribution",
+  "shortDescription": "Your music, everywhere",
+  "fullDescription": "Discover, stream, and share music from around the world. Create playlists, follow your favorite artists, and enjoy high-quality audio streaming on any device. Music Distribution brings you the best music experience with personalized recommendations and offline listening capabilities.",
+  "category": "MUSIC_AND_AUDIO",
+  "contentRating": {
+    "rating": "EVERYONE",
+    "ratingDescriptors": []
+  },
+  "pricing": {
+    "price": "0.00",
+    "currency": "USD"
+  },
+  "distribution": {
+    "countries": ["US", "CA", "GB", "AU", "DE", "FR", "IT", "ES", "JP", "KR", "BR", "MX", "IN", "CN", "RU"],
+    "excludedCountries": []
+  },
+  "contactDetails": {
+    "email": "support@musicapp.com",
+    "phone": "+1-555-0123",
+    "website": "https://musicapp.com"
+  },
+  "privacyPolicy": "https://musicapp.com/privacy",
+  "keywords": ["music", "streaming", "audio", "playlist", "discover", "entertainment"],
+  "screenshots": [
+    "screenshots/phone/1.png",
+    "screenshots/phone/2.png",
+    "screenshots/phone/3.png",
+    "screenshots/phone/4.png",
+    "screenshots/phone/5.png"
+  ],
+  "featureGraphic": "feature-graphic.png",
+  "icon": "icon-512.png",
+  "promoVideo": "promo-video.mp4",
+  "versionInfo": {
+    "versionCode": 1,
+    "versionName": "1.0.0",
+    "releaseNotes": "Initial release of Music Distribution app with full streaming capabilities, playlist management, and personalized recommendations."
+  },
+  "permissions": [
+    "INTERNET",
+    "ACCESS_NETWORK_STATE",
+    "WAKE_LOCK",
+    "READ_EXTERNAL_STORAGE",
+    "WRITE_EXTERNAL_STORAGE",
+    "RECORD_AUDIO"
+  ],
+  "targetSdkVersion": 33,
+  "minSdkVersion": 21
+}
