@@ -1,0 +1,57 @@
+{
+  "identity": {
+    "name": "Music Distribution",
+    "publisher": "Music App Inc.",
+    "publisherDisplayName": "Music App Inc."
+  },
+  "properties": {
+    "description": "Discover, stream, and share music from around the world. Create playlists, follow your favorite artists, and enjoy high-quality audio streaming on any device. Music Distribution brings you the best music experience with personalized recommendations and offline listening capabilities.",
+    "shortDescription": "Your music, everywhere",
+    "category": "Music",
+    "subcategory": "Music Streaming",
+    "keywords": ["music", "streaming", "audio", "playlist", "discover", "entertainment"],
+    "ageRating": {
+      "rating": "EVERYONE",
+      "descriptors": []
+    },
+    "pricing": {
+      "price": "0.00",
+      "currency": "USD"
+    },
+    "availability": {
+      "availableInAllCountries": true,
+      "excludedCountries": []
+    },
+    "contactDetails": {
+      "email": "support@musicapp.com",
+      "phone": "+1-555-0123",
+      "website": "https://musicapp.com"
+    },
+    "privacyPolicy": "https://musicapp.com/privacy",
+    "supportUrl": "https://musicapp.com/support",
+    "marketingUrl": "https://musicapp.com"
+  },
+  "screenshots": [
+    "screenshots/desktop/1.png",
+    "screenshots/desktop/2.png",
+    "screenshots/desktop/3.png",
+    "screenshots/desktop/4.png",
+    "screenshots/desktop/5.png"
+  ],
+  "appIcon": "app-icon-300.png",
+  "promoVideo": "promo-video.mp4",
+  "versionInfo": {
+    "version": "1.0.0.0",
+    "releaseNotes": "Initial release of Music Distribution app with full streaming capabilities, playlist management, and personalized recommendations."
+  },
+  "capabilities": [
+    "internetClient",
+    "musicLibrary",
+    "backgroundMediaPlayback"
+  ],
+  "targetDeviceFamilies": [
+    "Desktop",
+    "Mobile"
+  ],
+  "minimumOSVersion": "10.0.17763.0"
+}

@@ -1,0 +1,76 @@
+{
+  "bundleId": "com.musicapp",
+  "name": "Music Distribution",
+  "subtitle": "Your music, everywhere",
+  "description": "Discover, stream, and share music from around the world. Create playlists, follow your favorite artists, and enjoy high-quality audio streaming on any device. Music Distribution brings you the best music experience with personalized recommendations and offline listening capabilities.",
+  "keywords": ["music", "streaming", "audio", "playlist", "discover", "entertainment"],
+  "category": "Music",
+  "contentRights": {
+    "containsThirdPartyContent": false,
+    "usesIdfa": false
+  },
+  "ageRating": {
+    "rating": "4+",
+    "descriptors": []
+  },
+  "pricing": {
+    "price": "0.00",
+    "currency": "USD"
+  },
+  "availability": {
+    "availableInAllCountries": true,
+    "excludedCountries": []
+  },
+  "contactDetails": {
+    "email": "support@musicapp.com",
+    "phone": "+1-555-0123",
+    "website": "https://musicapp.com"
+  },
+  "privacyPolicy": "https://musicapp.com/privacy",
+  "supportUrl": "https://musicapp.com/support",
+  "marketingUrl": "https://musicapp.com",
+  "screenshots": {
+    "iPhone6_7_8": [
+      "screenshots/iphone/1.png",
+      "screenshots/iphone/2.png",
+      "screenshots/iphone/3.png",
+      "screenshots/iphone/4.png",
+      "screenshots/iphone/5.png"
+    ],
+    "iPhone6_7_8_Plus": [
+      "screenshots/iphone-plus/1.png",
+      "screenshots/iphone-plus/2.png",
+      "screenshots/iphone-plus/3.png"
+    ],
+    "iPhoneX_XS": [
+      "screenshots/iphone-x/1.png",
+      "screenshots/iphone-x/2.png",
+      "screenshots/iphone-x/3.png"
+    ],
+    "iPad": [
+      "screenshots/ipad/1.png",
+      "screenshots/ipad/2.png",
+      "screenshots/ipad/3.png"
+    ]
+  },
+  "appIcon": "app-icon-1024.png",
+  "previewVideo": "preview-video.mp4",
+  "versionInfo": {
+    "version": "1.0.0",
+    "buildNumber": "1",
+    "releaseNotes": "Initial release of Music Distribution app with full streaming capabilities, playlist management, and personalized recommendations."
+  },
+  "capabilities": [
+    "Background Audio",
+    "Network Access"
+  ],
+  "requiredDeviceCapabilities": [
+    "armv7"
+  ],
+  "supportedInterfaceOrientations": [
+    "UIInterfaceOrientationPortrait",
+    "UIInterfaceOrientationLandscapeLeft",
+    "UIInterfaceOrientationLandscapeRight"
+  ],
+  "minimumOSVersion": "12.0"
+}
