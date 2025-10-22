@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Music",
+    "slug": "music",
+    "version": "1.0.0",
+    "scheme": "music",
+    "orientation": "portrait",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.music",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.example.music",
+      "versionCode": 1,
+      "permissions": []
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "backendUrl": "http://localhost:3000"
+    }
+  }
+}
