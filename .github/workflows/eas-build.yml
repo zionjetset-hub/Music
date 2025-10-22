@@ -1,0 +1,115 @@
+name: Mobile - EAS build and submit
+
+on:
+  workflow_dispatch:
+    inputs:
+      enable_submit:
+        description: 'Set to true to submit to stores'
+        required: false
+        default: 'false'
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install --global eas-cli@latest expo@latest
+          npm ci || npm install
+
+      - name: Build (EAS Cloud)
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL || vars.EXPO_PUBLIC_API_URL }}
+        run: |
+          eas build --platform all --profile production --non-interactive --wait
+
+      - name: Build Android APK (Amazon/Huawei)
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL || vars.EXPO_PUBLIC_API_URL }}
+        run: |
+          eas build --platform android --profile amazon-apk --non-interactive --wait
+          eas build --platform android --profile huawei-apk --non-interactive --wait
+
+  submit-android:
+    needs: build
+    if: ${{ github.event.inputs.enable_submit == 'true' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install EAS CLI
+        run: npm install --global eas-cli@latest
+
+      - name: Write Google Play service account JSON
+        if: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON != '' }}
+        run: |
+          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > service-account.json
+        env:
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+
+      - name: Submit latest Android build to Play Console (internal)
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          if [ -f service-account.json ]; then
+            eas submit -p android --latest --track internal --non-interactive --key service-account.json;
+          else
+            echo "Missing GOOGLE_PLAY_SERVICE_ACCOUNT_JSON secret; skipping Android submit.";
+          fi
+
+  submit-ios:
+    needs: build
+    if: ${{ github.event.inputs.enable_submit == 'true' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install EAS CLI
+        run: npm install --global eas-cli@latest
+
+      - name: Submit latest iOS build to App Store Connect (TestFlight)
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          EXPO_APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.EXPO_APP_STORE_CONNECT_ISSUER_ID }}
+          EXPO_APP_STORE_CONNECT_KEY_ID: ${{ secrets.EXPO_APP_STORE_CONNECT_KEY_ID }}
+          EXPO_APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.EXPO_APP_STORE_CONNECT_PRIVATE_KEY }}
+        run: |
+          if [ -n "$EXPO_APP_STORE_CONNECT_ISSUER_ID" ] && [ -n "$EXPO_APP_STORE_CONNECT_KEY_ID" ] && [ -n "$EXPO_APP_STORE_CONNECT_PRIVATE_KEY" ]; then
+            eas submit -p ios --latest --non-interactive;
+          else
+            echo "Missing App Store Connect API Key secrets; skipping iOS submit.";
+          fi
