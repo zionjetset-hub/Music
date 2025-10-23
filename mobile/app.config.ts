@@ -8,7 +8,9 @@ const config: ExpoConfig = {
   version: '1.0.0',
   orientation: 'portrait',
   platforms: ['ios', 'android', 'web'],
+  icon: './assets/icon.png',
   splash: {
+    image: './assets/splash.png',
     resizeMode: 'contain',
     backgroundColor: '#ffffff',
   },
@@ -25,6 +27,10 @@ const config: ExpoConfig = {
   android: {
     package: 'com.example.music',
     permissions: [],
+    adaptiveIcon: {
+      foregroundImage: './assets/icon.png',
+      backgroundColor: '#ffffff',
+    },
   },
   web: {
     bundler: 'metro',
